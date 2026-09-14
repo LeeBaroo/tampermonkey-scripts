@@ -1,14 +1,11 @@
 // ==UserScript==
 // @name         애니라이프 시청기록 자동 동기화
 // @namespace    https://github.com/LeeBaroo/tampermonkey-scripts
-// @version      6.8
+// @version      6.9
 // @description  시청기록 저장 + 회차 진행률 + 메인화면 고속/강조 표시
 // @match        *://anilife01.tv/*
 // @match        *://*.anilife01.tv/*
 // @grant        GM_xmlhttpRequest
-// @grant        GM_getValue
-// @grant        GM_setValue
-// @grant        GM_registerMenuCommand
 // @connect      script.google.com
 // @connect      script.googleusercontent.com
 // @run-at       document-idle
@@ -29,132 +26,10 @@ const API_URL =
 
 // =========================================================
 // API KEY
-//
-// GitHub에는 API KEY를 저장하지 않는다.
-// 각 PC의 Tampermonkey 저장소에 따로 저장한다.
 // =========================================================
 
-const API_KEY_STORAGE_KEY =
-'anilife-api-key';
-
-
-function getApiKey() {
-
-let key =
-String(
-GM_getValue(
-API_KEY_STORAGE_KEY,
-''
-) || ''
-)
-.trim();
-
-
-if (!key) {
-
-const input =
-prompt(
-'애니라이프 시청기록 동기화 API 키를 입력하세요.\n\n' +
-'입력한 키는 이 PC의 Tampermonkey 저장소에만 저장됩니다.'
-);
-
-
-if (
-input !== null
-) {
-
-key =
-String(
-input
-)
-.trim();
-
-
-if (key) {
-
-GM_setValue(
-API_KEY_STORAGE_KEY,
-key
-);
-}
-}
-}
-
-
-return key;
-}
-
-
-let API_KEY =
-getApiKey();
-
-
-// =========================================================
-// Tampermonkey 메뉴에서 API KEY 변경
-// =========================================================
-
-GM_registerMenuCommand(
-
-'애니라이프 API 키 변경',
-
-function () {
-
-const current =
-String(
-GM_getValue(
-API_KEY_STORAGE_KEY,
-''
-) || ''
-);
-
-
-const input =
-prompt(
-'새 API 키를 입력하세요.',
-current
-);
-
-
-if (
-input === null
-) {
-
-return;
-}
-
-
-const nextKey =
-String(
-input
-)
-.trim();
-
-
-if (!nextKey) {
-
-alert(
-'API 키가 비어 있어 변경하지 않았습니다.'
-);
-
-return;
-}
-
-
-GM_setValue(
-API_KEY_STORAGE_KEY,
-nextKey
-);
-
-
-API_KEY =
-nextKey;
-
-
-alert(
-'API 키를 저장했습니다.\n페이지를 새로고침하면 적용됩니다.'
-);
-}
-);
+const API_KEY =
+'anilife-my-secret-2026';
 
 
 const SAVE_INTERVAL =
