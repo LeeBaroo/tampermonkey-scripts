@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         애니라이프 시청기록 자동 동기화
 // @namespace    https://github.com/LeeBaroo/tampermonkey-scripts
-// @version      7.0
+// @version      7.1
 // @description  시청기록 저장 + 진행률 + 시청필요 + 메인 이어보기 + 재생위치 복원 + 기록 삭제
 // @match        *://anilife01.tv/*
 // @match        *://*.anilife01.tv/*
@@ -20,7 +20,7 @@
     // 설정 / 상태
     // =========================================================
 
-    const API_URL = 'https://script.google.com/macros/s/AKfycbxgN5zZYdlBdCuDPVBmHpFQvdZax-ubhGqOAc4Wrxgtm6j7ZiRhGAVUvR2oWI_3cOOb/exec';
+    const API_URL = 'https://anilife-sync-api.cheol0758.workers.dev';
     const API_KEY = 'anilife-my-secret-2026';
     const SAVE_INTERVAL = 10;
     const COMPLETE_PERCENT = 95;
